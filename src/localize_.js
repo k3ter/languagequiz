@@ -28,8 +28,6 @@ const translations = {
 	"French":{
 		"fr": "Français",
 	},
-	
-	
 	// Grammar
 	"nominative":{
 		"en": "nominative",
@@ -74,7 +72,8 @@ const translations = {
 	
 	"cs-desc":{
 		"en":(cls)=><Typography className={cls} variant="body1">Czech is a slavic language almost exclusively spoken in the Czech Republic. Just over 10 million natives speak the language. It is very similar to both Slovak and Polish to a point of high comprehension among those languages. The language has been heavily influenced by Latin and German (<MuiLink rel="noreferrer" target="_blank" href={urls["cs-desc-wi"]}>Wikipedia</MuiLink>).
-		<br/>The Czech Republic (alternatively known as Czechia) is regarded as one of the safest places to live by the <MuiLink rel="noreferrer" target="_blank" href={urls["cs-desc-pi"]}>Global Peace index.</MuiLink>, ranking number 10 on their peacefulness scale (second best slavic country after Slovenia).</Typography>
+		<br/>The Czech Republic (alternatively known as Czechia) is regarded as one of the safest places to live by the <MuiLink rel="noreferrer" target="_blank" href={urls["cs-desc-pi"]}>Global Peace index.</MuiLink>, ranking number 10 on their peacefulness scale (second best slavic country after Slovenia).</Typography>,
+		"fr":()=>""
 	},
 	"cs-1":{
 		"en":"Orthography and Phonetics",
@@ -96,7 +95,15 @@ const translations = {
 	"cs-2-note-pan":{
 		"en": "When multiple dative-case words or vocative-case words are in series, all but the last use -u, and the last uses -ovi. The same applies",
 		"fr": "Quand de multiple mots au vocatif ou au datif sont en série, le denier se termine par -ovi, et le reste se termine par -u."
-	}
+	},
+	"check":{
+		"en":"check",
+		"fr":"vérifier"
+	},
+	"next":{
+		"en":"next",
+		"fr":"suivant"
+	},
 }
 
 const localize = new Localize(translations)

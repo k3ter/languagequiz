@@ -38,19 +38,15 @@ import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import LanguageIcon from '@material-ui/icons/Language';
 
-//Localization
-import localize from "./localize";
+// Resources
+import { useResources } from "./resources/resources"
 
 // Components
 import Home from "./home";
 
 import CSHome from "./cs/home";
 
-const theme = createMuiTheme({
-	palette: {
-		type: "dark"
-	}
-});
+import theme from "./theme"
 
 const langs = {
 	"cs":"Czech",
@@ -73,25 +69,25 @@ const useStyles = makeStyles((theme) => ({
 	},
 	drawerItemsContainer: {
 		width:200
-	}
-		
+	},
 }));
 
 function DrawerItem(props){
 	return(
-		<ListItem button disabled={props.disabled} component={Link} to={props.to} key={localize.translate(props.children)} onClick={props.toggleDrawer(false)}>
+		<ListItem button disabled={props.disabled} component={Link} to={props.to} key={props.children} onClick={props.toggleDrawer(false)}>
 			<ListItemIcon>{props.icon}</ListItemIcon>
-			<ListItemText primary={localize.translate(props.children)}/>
+			<ListItemText primary={props.children}/>
 		</ListItem>
 	)
 }
 
 export default function App(props) {
 	const getQuery = queryString.parse(window.location.search);
-	if(getQuery.locale)
-		localize.setLocale(getQuery.locale)
-	else
-		localize.setLocale("en")
+	if(getQuery.locale){
+		//localize.setLocale(getQuery.locale)
+	}
+	const R = useResources()
+	console.log(R.getString(R.string.hello, "cs"))
 	
 	const classes = useStyles();
 	
@@ -116,7 +112,9 @@ export default function App(props) {
 			<Divider/>
 			{Object.keys(langs).map((lang, index)=>
 				<DrawerItem key={index} icon={index==0 ? <LanguageIcon/> : false} to={location=>({...location,pathname:`/${lang}`})} toggleDrawer={toggleDrawer} disabled={!supportedLangs.includes(lang)}>
-					{localize.getTranslations(langs[lang])[langs[lang]] ? localize.getTranslations(langs[lang])[langs[lang]][lang] : langs[lang]}
+					{//localize.getTranslations(langs[lang])[langs[lang]] ? localize.getTranslations(langs[lang])[langs[lang]][lang] : langs[lang]}
+						"hi"
+					}
 				</DrawerItem>)
 			}
 		</List>
@@ -133,7 +131,10 @@ export default function App(props) {
 							<MenuIcon />
 						</IconButton>
 						<Typography variant="h6" color="inherit">
-						{localize.translate("Language Quiz")}
+						{
+							//localize.translate("Language Quiz")
+							"tmp"
+						}
 						</Typography>
 					</Toolbar>
 				</AppBar>
@@ -145,10 +146,10 @@ export default function App(props) {
 				</Drawer>
 				<Switch>
 					<Route exact path="/">
-						<Home langs={langs} suplangs={supportedLangs} localize={localize}/>
+						<Home langs={langs} suplangs={supportedLangs}/>
 					</Route>
 					<Route path="/cs">
-						<CSHome localize={localize}/>
+						<CSHome/>
 					</Route>
 				</Switch>
 			</ThemeProvider>

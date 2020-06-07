@@ -73,14 +73,13 @@ function QuizItem(props){
 				<MultilingualButton
 					disabled={!supquizzes.includes(props.children)}
 					to={location=>({...location,pathname:`${location.pathname}/${props.children}`})}
-					localize={props.localize}
 					locale={props.translate && isolang}>
 				{props.children}
 				</MultilingualButton>
 			</Box>
 			<Box className={classes.descContainer}>
 				<Typography variant="subtitle1">
-					{props.localize.translate(props.desc)}
+					{"tmp"/*props.localize.translate(props.desc)*/}
 				</Typography>
 			</Box>
 		</ListItem>
@@ -93,8 +92,10 @@ function HomeContents(props){
 	const classes = useStyles(theme)
 	return(
 		<Box className={classes.root}>
-			<Typography variant="h3">{props.localize.translate("Czech","cs")}</Typography>
-			{props.localize.translate("cs-desc")(classes.globalDesc)}
+			<Typography variant="h3">{"tmp"/*props.localize.translate("Czech","cs")*/}</Typography>
+			{
+				"tmp"//props.localize.translate("cs-desc")(classes.globalDesc)}
+			}
 			<Divider className={classes.divider}/>
 			<List className={classes.listContainer}>
 				{
@@ -104,7 +105,6 @@ function HomeContents(props){
 									desc={quizzes[item].desc}
 									key={index*2}
 									last={index==Object.keys(quizzes).length-1}
-									localize={props.localize}
 									translate={quizzes[item].translate}>
 								{item}
 								</QuizItem>
